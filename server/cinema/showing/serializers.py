@@ -6,4 +6,4 @@ class ShowingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Showing
-        fields = ['id', 'movie', 'movie_title', 'date', 'time', 'price', 'created_at', 'updated_at']
+        fields = ['id', 'movie', 'movie_title', 'date', 'time', 'price', 'created_at', 'updated_at', 'includes_3d_glasses', 'includes_popcorn']
