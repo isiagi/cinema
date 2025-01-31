@@ -5,6 +5,12 @@
       "static/chunks/_app-pages-browser_node_modules_react-player_lazy_index_js.js"
     ]
   },
+  "components/movie-showtimes.tsx -> react-player/lazy": {
+    "id": "components/movie-showtimes.tsx -> react-player/lazy",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-player_lazy_index_js.js"
+    ]
+  },
   "node_modules/@clerk/nextjs/dist/esm/app-router/client/ClerkProvider.js -> ./keyless-creator-reader.js": {
     "id": "node_modules/@clerk/nextjs/dist/esm/app-router/client/ClerkProvider.js -> ./keyless-creator-reader.js",
     "files": [

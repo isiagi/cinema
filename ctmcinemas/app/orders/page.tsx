@@ -23,22 +23,20 @@ async function getOrders(userId: string) {
 }
 
 export default async function OrdersPage() {
-  const { userId } = await auth();
+  // if (!userId) {
+  //   return (
+  //     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  //       <h1 className="text-2xl font-bold mb-4">
+  //         Please log in to view your orders
+  //       </h1>
+  //       <Link href="/login">
+  //         <Button>Log In</Button>
+  //       </Link>
+  //     </div>
+  //   );
+  // }
 
-  if (!userId) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <h1 className="text-2xl font-bold mb-4">
-          Please log in to view your orders
-        </h1>
-        <Link href="/login">
-          <Button>Log In</Button>
-        </Link>
-      </div>
-    );
-  }
-
-  const orders = await getOrders(userId);
+  const orders = [];
 
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
@@ -47,7 +45,7 @@ export default async function OrdersPage() {
         <p>You haven't made any orders yet.</p>
       ) : (
         <div className="space-y-8">
-          {orders.map((order) => (
+          {[].map((order) => (
             <div key={order.id} className="bg-white shadow-md rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">
                 {order.showing.movie.title}
