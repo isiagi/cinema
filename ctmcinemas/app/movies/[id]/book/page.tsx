@@ -29,7 +29,7 @@ const generateSeats = (basePrice: number = 10.0) => {
             id: `${row}${seatNumber}`,
             row,
             number: seatNumber,
-            isAvailable: Math.random() > 0.2, // 80% chance of being available
+            isAvailable: true, // 80% chance of being available
             price: basePrice * 1.2, // Slightly higher price for the first row
           });
         }
@@ -41,7 +41,7 @@ const generateSeats = (basePrice: number = 10.0) => {
           id: `${row}${seatNumber}`,
           row,
           number: seatNumber,
-          isAvailable: Math.random() > 0.2,
+          isAvailable: true,
           price: basePrice,
         });
       }
@@ -52,7 +52,7 @@ const generateSeats = (basePrice: number = 10.0) => {
           id: `${row}${seatNumber}`,
           row,
           number: seatNumber,
-          isAvailable: seatNumber === 4 ? false : Math.random() > 0.2,
+          isAvailable: true,
           price: basePrice,
         });
       }

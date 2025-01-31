@@ -121,10 +121,10 @@ export default function Navbar() {
                   Coming Soon
                 </Link>
                 <Link
-                  href="/eats"
+                  href="/services"
                   className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Eats
+                  Services
                 </Link>
               </div>
             </div>

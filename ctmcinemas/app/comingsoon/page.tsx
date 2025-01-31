@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Star, Play, Info, X } from "lucide-react";
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
@@ -57,7 +58,28 @@ const upcomingMovies = [
 
 export default function ComingSoonPage() {
   const [selectedTrailer, setSelectedTrailer] = useState<string | null>(null);
+  const [movies, setMovies] = useState<any[]>([]);
   const router = useRouter();
+
+  const getMoviesFromAPI = async () => {
+    await axios
+      .get("http://127.0.0.1:8000/movies/movies/by_status/?status=COMING_SOON")
+      .then((response) => {
+        // filter where status is "coming soon"
+        // const filteredMovies = response.data.filter(
+        //   (movie: any) => movie.status === "COMING_SOON"
+        // );
+        setMovies(response.data);
+      })
+      .catch((error) => {
+        setMovies([]);
+        console.error("No movies found because of: ", error);
+      });
+  };
+
+  useEffect(() => {
+    getMoviesFromAPI();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -79,7 +101,7 @@ export default function ComingSoonPage() {
       {/* Movies Grid */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {upcomingMovies.map((movie) => (
+          {movies.map((movie) => (
             <div
               key={movie.id}
               className="bg-gray-800 rounded-lg overflow-hidden flex flex-col md:flex-row border border-gray-700 hover:border-gray-600 transition-colors"
@@ -122,7 +144,7 @@ export default function ComingSoonPage() {
                     </span>{" "}
                     {movie.releaseDate}
                   </div>
-                  <div>
+                  {/* <div>
                     <span className="font-semibold text-white">Genre:</span>
                     <div className="flex flex-wrap gap-2 mt-1">
                       {movie.genre.map((g) => (
@@ -135,14 +157,14 @@ export default function ComingSoonPage() {
                         </Badge>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                   <div className="text-gray-300">
                     <span className="font-semibold text-white">Actor:</span>
                     <p className="text-gray-400">{movie.actor.join(", ")}</p>
                   </div>
                   <div className="text-gray-300">
                     <span className="font-semibold text-white">Director:</span>
-                    <p className="text-gray-400">{movie.director.join(", ")}</p>
+                    <p className="text-gray-400">{movie.director}</p>
                   </div>
                 </div>
 

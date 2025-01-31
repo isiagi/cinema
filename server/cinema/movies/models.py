@@ -3,6 +3,14 @@ from django.utils.text import slugify
 
 # Create your models here.
 class Movie(models.Model):
+    class Status(models.TextChoices):
+        PENDING = 'Pending', 'Pending'
+        RELEASED = 'Released', 'Released'
+        COMING_SOON = 'Coming Soon', 'Coming Soon'
+        CANCELLED = 'Cancelled', 'Cancelled',
+        NOW_SHOWING = 'Now Showing', 'Now Showing'
+
+
     id = models.SlugField(primary_key=True, max_length=255, unique=True, editable=False)
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=500)
@@ -17,7 +25,7 @@ class Movie(models.Model):
     releaseDate = models.DateField(null=True, blank=True)
     director = models.CharField(max_length=1000)
     trailerUrl = models.CharField(max_length=1000)
-    status = models.CharField(max_length=555)
+    status = models.CharField(max_length=15, choices=Status.choices, default=Status.PENDING)
 
     def save(self, *args, **kwargs):
         if not self.id:

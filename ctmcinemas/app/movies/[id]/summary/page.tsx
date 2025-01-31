@@ -37,7 +37,7 @@ const eatsItems: EatsItem[] = [
 export default function BookingSummaryPage() {
   // const { isLoaded, isSignedIn, userId } = auth();
   const [popupMessage, setPopupMessage] = useState("");
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
   const searchParams = useSearchParams();
   const params = useParams();
   const router = useRouter();
@@ -46,8 +46,8 @@ export default function BookingSummaryPage() {
   const [color, setColor] = useState<string>("");
   const [bgColor, setBgColor] = useState<string>("");
 
-  const [user, setUser] = useState<any>({})
-  const access_token = localStorage.getItem('access_token');
+  const [user, setUser] = useState<any>({});
+  const access_token = localStorage.getItem("access_token");
 
   const seats = searchParams.get("seats")?.split(",") || [];
   const date = searchParams.get("date");
@@ -60,10 +60,14 @@ export default function BookingSummaryPage() {
       const date = searchParams.get("date");
       const time = searchParams.get("time");
 
-      const showResponse = await axios.get(`http://127.0.0.1:8000/showings/showings/movie/${movieId}/`);
+      const showResponse = await axios.get(
+        `http://127.0.0.1:8000/showings/showings/movie/${movieId}/`
+      );
       const showData = showResponse.data;
 
-      const movieResponse = await axios.get(`http://127.0.0.1:8000/movies/movies/${movieId}/`);
+      const movieResponse = await axios.get(
+        `http://127.0.0.1:8000/movies/movies/${movieId}/`
+      );
       const movieData = movieResponse.data;
 
       const filteredShow = showData.find(
@@ -81,7 +85,7 @@ export default function BookingSummaryPage() {
         ...showDetails,
       };
 
-      setLoader(false)
+      setLoader(false);
       setMovieDetails(combinedDetails);
     } catch (err) {
       setMovieDetails({});
@@ -91,26 +95,29 @@ export default function BookingSummaryPage() {
 
   const getUserProfile = () => {
     let config = {
-      method: 'get',
+      method: "get",
       maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/auth/profile/',
+      url: "http://127.0.0.1:8000/auth/profile/",
       headers: {
-        'Authorization': `Bearer ${access_token}`
-      }
+        Authorization: `Bearer ${access_token}`,
+      },
     };
 
-    axios.request(config).then((response) => {
-      setUser(response.data);
-    }).catch((error) => {
-      setUser({})
-      console.log(error.response.data)
-    });
-  }
+    axios
+      .request(config)
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        setUser({});
+        console.log(error.response.data);
+      });
+  };
 
   // get movie details
   useEffect(() => {
-    getMovieDetails()
-    getUserProfile()
+    getMovieDetails();
+    getUserProfile();
   }, [movieId]);
 
   useEffect(() => {
@@ -177,6 +184,8 @@ export default function BookingSummaryPage() {
         showing: movieDetails.showId,
       };
 
+      console.log(payload, "payload");
+
       await axios.post("http://127.0.0.1:8000/orders/orders/", payload, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -188,9 +197,11 @@ export default function BookingSummaryPage() {
       setColor("#62a03f");
       setBgColor("#111827");
       setPopupMessage("Order placed successfully!");
-
     } catch (error: any) {
-      console.error("Error creating order:", error.response?.data || error.message);
+      console.error(
+        "Error creating order:",
+        error.response?.data || error.message
+      );
       setColor("#960000");
       setBgColor("#111827");
       setPopupMessage("An error occurred. Please try again.");
@@ -199,7 +210,11 @@ export default function BookingSummaryPage() {
   };
 
   if (loader) {
-    return <div className="flex justify-center items-center h-screen w-full">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen w-full">
+        Loading...
+      </div>
+    );
   }
 
   return (
@@ -325,7 +340,7 @@ export default function BookingSummaryPage() {
             </span>
           </div>
           <div className="flex justify-between">
-            <span>{movieDetails.type}</span>
+            <span>{movieDetails.includes_3d_glasses ? "3D Glasses" : ""}</span>
             <span>Included</span>
           </div>
           {Object.entries(selectedEats).map(([itemId, quantity]) => {
@@ -352,7 +367,14 @@ export default function BookingSummaryPage() {
       </div>
 
       {/* Payment Button */}
-      {popupMessage && <PopupMessage color={color} bgColor={bgColor} message={popupMessage} onClose={() => setPopupMessage("")} />}
+      {popupMessage && (
+        <PopupMessage
+          color={color}
+          bgColor={bgColor}
+          message={popupMessage}
+          onClose={() => setPopupMessage("")}
+        />
+      )}
       <div className="mt-8 flex justify-end">
         <Button size="lg" className="w-full md:w-auto" onClick={handlePayment}>
           Proceed to Payment

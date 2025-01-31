@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 "releaseDate": "2010-07-16",
                 "director": "Christopher Nolan",
                 "trailerUrl": "https://www.youtube.com/watch?v=YoHD9XEInc0",
-                "status": "Available"
+                "status": "Now_Showing"
             },
             {
                 "title": "The Dark Knight",
@@ -37,7 +37,7 @@ class Command(BaseCommand):
                 "releaseDate": "2008-07-18",
                 "director": "Christopher Nolan",
                 "trailerUrl": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
-                "status": "Available"
+                "status": "Now_Showing"
             },
             {
                 "title": "Interstellar",
@@ -53,7 +53,7 @@ class Command(BaseCommand):
                 "releaseDate": "2014-11-07",
                 "director": "Christopher Nolan",
                 "trailerUrl": "https://www.youtube.com/watch?v=Rvns5DaW-ug",
-                "status": "Available"
+                "status": "COMMING_SOON"
             },
             {
                 "title": "Avengers: Endgame",
@@ -69,7 +69,7 @@ class Command(BaseCommand):
                 "releaseDate": "2019-04-26",
                 "director": "Anthony Russo, Joe Russo",
                 "trailerUrl": "https://www.youtube.com/watch?v=BKviRM0KF2A",
-                "status": "Available"
+                "status": "COMING_SOON"
             },
             {
                 "title": "Titanic",
@@ -85,7 +85,7 @@ class Command(BaseCommand):
                 "releaseDate": "1997-12-19",
                 "director": "James Cameron",
                 "trailerUrl": "https://www.youtube.com/watch?v=I7c1etV7D7g&t=5s",
-                "status": "Available"
+                "status": "NOW_SHOWING"
             },
             {
                 "title": "The Matrix",
@@ -101,7 +101,7 @@ class Command(BaseCommand):
                 "releaseDate": "1999-03-31",
                 "director": "The Wachowskis",
                 "trailerUrl": "https://www.youtube.com/watch?v=d-wBjHZRSJA",
-                "status": "Available"
+                "status": "NOW_SHOWING"
             },
             {
                 "title": "Forrest Gump",
@@ -117,7 +117,7 @@ class Command(BaseCommand):
                 "releaseDate": "1994-07-06",
                 "director": "Robert Zemeckis",
                 "trailerUrl": "https://www.youtube.com/watch?v=bLvqoHBptjg",
-                "status": "Available"
+                "status": "COMING_SOON"
             },
             {
                 "title": "Joker",
@@ -133,7 +133,7 @@ class Command(BaseCommand):
                 "releaseDate": "2019-10-04",
                 "director": "Todd Phillips",
                 "trailerUrl": "https://www.youtube.com/watch?v=2mNOqRHdVzY",
-                "status": "Available"
+                "status": "COMING_SOON"
             },
             {
                 "title": "Shutter Island",
@@ -149,7 +149,7 @@ class Command(BaseCommand):
                 "releaseDate": "2010-02-19",
                 "director": "Martin Scorsese",
                 "trailerUrl": "https://www.youtube.com/watch?v=v8yrZSkKxTA",
-                "status": "Available"
+                "status": "NOW_SHOWING"
             },
             {
                 "title": "The Shawshank Redemption",
@@ -165,7 +165,7 @@ class Command(BaseCommand):
                 "releaseDate": "1994-09-23",
                 "director": "Frank Darabont",
                 "trailerUrl": "https://www.youtube.com/watch?v=PLl99DlL6b4",
-                "status": "Available"
+                "status": "NOW_SHOWING"
             }
         ]
 

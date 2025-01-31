@@ -23,6 +23,20 @@ class MovieViewSet(ModelViewSet):
         movie = self.get_object()
         serializer = self.get_serializer(movie)
         return Response(serializer.data)
+    
+    @action(detail=False, methods=["get"], permission_classes=[IsAuthenticatedOrReadOnly])
+    def by_status(self, request):
+        """
+        Get movies filtered by status.
+        Example usage: /movies/by_status/?status=Released
+        """
+        status = request.query_params.get("status")
+        if not status:
+            return Response({"error": "Status parameter is required"}, status=400)
+        
+        movies = Movie.objects.filter(status=status)
+        serializer = self.get_serializer(movies, many=True)
+        return Response(serializer.data)
 
     def perform_create(self, serializer):
         """

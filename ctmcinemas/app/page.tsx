@@ -1,4 +1,5 @@
 import { Carousel } from "@/components/Carousel";
+import { ServicesSection } from "@/components/ServicesSection";
 import { WhatsOn } from "@/components/WhatsOn";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <main>
       <Carousel />
       <WhatsOn />
+      <ServicesSection />
     </main>
   );
 }
