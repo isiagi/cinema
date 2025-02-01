@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,7 +6,7 @@ import Link from "next/link";
 import { Film, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MovieSearch from "./MovieSearch";
-import { UserButton, SignInButton, useUser } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import AuthModal from "./signinup";
 import axios from "axios";
 import PopupMessage from "./popup";
@@ -25,7 +26,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const getUserProfile = () => {
-      let config = {
+      const config = {
         method: "get",
         maxBodyLength: Infinity,
         url: "http://127.0.0.1:8000/auth/profile/",
@@ -112,7 +113,7 @@ export default function Navbar() {
                   href="/whatson"
                   className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  What's On
+                  What&apos;s On
                 </Link>
                 <Link
                   href="/comingsoon"
@@ -197,7 +198,7 @@ export default function Navbar() {
               href="/whatson"
               className="text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
             >
-              What's On
+              What&apos;s On
             </Link>
             <Link
               href="/comingsoon"

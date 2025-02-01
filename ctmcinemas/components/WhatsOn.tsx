@@ -1,37 +1,41 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { movies } from "@/lib/movies";
+// import { movies } from "@/lib/movies";
 import axios from "axios";
 
 export function WhatsOn() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showAll, setShowAll] = useState(false);
-  const [movies, setMovies] = useState<any[]>([])
+  const [movies, setMovies] = useState<any[]>([]);
   const displayedMovies = showAll ? movies : movies.slice(0, 6);
   const router = useRouter();
 
   const getMoviesFromAPI = async () => {
-    await axios.get('http://127.0.0.1:8000/movies/movies/').then((response) => {
-      setMovies(response.data);
-    }).catch((error) => {
-      setMovies([])
-      console.error("No movies found because of: ", error);
-    })
-  }
+    await axios
+      .get("http://127.0.0.1:8000/movies/movies/")
+      .then((response) => {
+        setMovies(response.data);
+      })
+      .catch((error) => {
+        setMovies([]);
+        console.error("No movies found because of: ", error);
+      });
+  };
 
   useEffect(() => {
     getMoviesFromAPI();
-  }, [])
+  }, []);
 
   return (
     <section className="bg-black">
       <div className="max-w-[1400px] mx-auto py-16 px-4 md:px-16">
         <h2 className="text-3xl font-bold mb-8 text-center text-white">
-          What's On
+          What&apos;s On
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[450px] gap-4 p-4 mx-4 lg:mx-10">

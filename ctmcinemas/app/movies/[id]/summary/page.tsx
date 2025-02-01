@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -6,20 +7,20 @@ import { Button } from "@/components/ui/button";
 import { Edit2, Film, Calendar, Clock, Info, Utensils } from "lucide-react";
 import Image from "next/image";
 // import { movies } from "@/lib/movies";
-import { useAuth } from "@clerk/nextjs";
+// import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import PopupMessage from "@/components/popup";
 // import { auth } from "@clerk/nextjs/server";
 
-interface MovieDetails {
-  title: string;
-  image: string;
-  duration: string;
-  rating: string;
-  screen: string;
-  price: number;
-  type: string;
-}
+// interface MovieDetails {
+//   title: string;
+//   image: string;
+//   duration: string;
+//   rating: string;
+//   screen: string;
+//   price: number;
+//   type: string;
+// }
 
 interface EatsItem {
   id: string;
@@ -94,7 +95,7 @@ export default function BookingSummaryPage() {
   };
 
   const getUserProfile = () => {
-    let config = {
+    const config = {
       method: "get",
       maxBodyLength: Infinity,
       url: "http://127.0.0.1:8000/auth/profile/",
