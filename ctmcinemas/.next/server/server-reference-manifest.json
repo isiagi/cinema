@@ -2,19 +2,11 @@
   "node": {
     "7f1e5064da1cb85bf6a858ca69cb303479e54cc09f": {
       "workers": {
-        "app/comingsoon/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
         "app/_not-found/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
-        "app/whatson/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
-        "app/movies/[id]/page": {
+        "app/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
@@ -22,35 +14,25 @@
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
-        "app/page": {
+        "app/whatson/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
       "layer": {
-        "app/comingsoon/page": "action-browser",
         "app/_not-found/page": "action-browser",
-        "app/whatson/page": "action-browser",
-        "app/movies/[id]/page": "action-browser",
+        "app/page": "action-browser",
         "app/services/page": "action-browser",
-        "app/page": "action-browser"
+        "app/whatson/page": "action-browser"
       }
     },
     "7f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9": {
       "workers": {
-        "app/comingsoon/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
         "app/_not-found/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
-        "app/whatson/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
-        "app/movies/[id]/page": {
+        "app/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
@@ -58,35 +40,25 @@
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
-        "app/page": {
+        "app/whatson/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
       "layer": {
-        "app/comingsoon/page": "action-browser",
         "app/_not-found/page": "action-browser",
-        "app/whatson/page": "action-browser",
-        "app/movies/[id]/page": "action-browser",
+        "app/page": "action-browser",
         "app/services/page": "action-browser",
-        "app/page": "action-browser"
+        "app/whatson/page": "action-browser"
       }
     },
     "7f5225f4c082a9998aa4b413e74399819337a1317c": {
       "workers": {
-        "app/comingsoon/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
         "app/_not-found/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
-        "app/whatson/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
-        "app/movies/[id]/page": {
+        "app/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
@@ -94,18 +66,16 @@
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         },
-        "app/page": {
+        "app/whatson/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%5B%227f1e5064da1cb85bf6a858ca69cb303479e54cc09f%22%2C%22syncKeylessConfigAction%22%5D%2C%5B%227f8c32981729fb1f0d05b84d2a7e881c9c65fd3ef9%22%2C%22createOrReadKeylessAction%22%5D%5D%5D%2C%5B%22%2Fhome%2Fisiagi%2FDownloads%2Fctmcinema-master%2Fctmcinemas%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%5B%227f5225f4c082a9998aa4b413e74399819337a1317c%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
       "layer": {
-        "app/comingsoon/page": "action-browser",
         "app/_not-found/page": "action-browser",
-        "app/whatson/page": "action-browser",
-        "app/movies/[id]/page": "action-browser",
+        "app/page": "action-browser",
         "app/services/page": "action-browser",
-        "app/page": "action-browser"
+        "app/whatson/page": "action-browser"
       }
     }
   },

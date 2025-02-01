@@ -1,60 +1,60 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Clock, Star, Play, Info, X } from "lucide-react";
+import { Clock, Play, Info, X } from "lucide-react";
 import dynamic from "next/dynamic";
 import axios from "axios";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 // This would typically come from an API
-const upcomingMovies = [
-  {
-    id: "amazing-spider-man",
-    title: "The Amazing Spider-Man",
-    image: "/placeholder.svg?height=600&width=400&text=Spider-Man",
-    rating: 9.3,
-    duration: "02 hours 30 minutes",
-    description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem...",
-    language: "English",
-    releaseDate: "May 19, 2022",
-    genre: ["Drama", "Magic", "Sci-fi"],
-    actor: [
-      "Alexander Cattly",
-      "Cartin Hollia",
-      "Greta Garbo",
-      "Humpray Richard",
-      "Martin Brando",
-    ],
-    director: ["Grace Belly", "Kingia Rogers"],
-    trailerUrl: "https://www.youtube.com/watch?v=TYMMOjBUPMM",
-  },
-  {
-    id: "prison-break",
-    title: "Prison Break",
-    image: "/placeholder.svg?height=600&width=400&text=Prison+Break",
-    rating: 8.2,
-    duration: "01 hours 00 minutes",
-    description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem...",
-    language: "English",
-    releaseDate: "May 5, 2022",
-    genre: ["Cartoon", "Magic", "Sci-fi"],
-    actor: [
-      "Alexander Cattly",
-      "Cartin Hollia",
-      "Greta Garbo",
-      "Martin Brando",
-    ],
-    director: ["Gally Peckin", "Grace Belly"],
-    trailerUrl: "https://www.youtube.com/watch?v=AL9zLctDJaU",
-  },
-];
+// const upcomingMovies = [
+//   {
+//     id: "amazing-spider-man",
+//     title: "The Amazing Spider-Man",
+//     image: "/placeholder.svg?height=600&width=400&text=Spider-Man",
+//     rating: 9.3,
+//     duration: "02 hours 30 minutes",
+//     description:
+//       "Sed ut perspiciatis unde omnis iste natus error sit voluptatem...",
+//     language: "English",
+//     releaseDate: "May 19, 2022",
+//     genre: ["Drama", "Magic", "Sci-fi"],
+//     actor: [
+//       "Alexander Cattly",
+//       "Cartin Hollia",
+//       "Greta Garbo",
+//       "Humpray Richard",
+//       "Martin Brando",
+//     ],
+//     director: ["Grace Belly", "Kingia Rogers"],
+//     trailerUrl: "https://www.youtube.com/watch?v=TYMMOjBUPMM",
+//   },
+//   {
+//     id: "prison-break",
+//     title: "Prison Break",
+//     image: "/placeholder.svg?height=600&width=400&text=Prison+Break",
+//     rating: 8.2,
+//     duration: "01 hours 00 minutes",
+//     description:
+//       "Sed ut perspiciatis unde omnis iste natus error sit voluptatem...",
+//     language: "English",
+//     releaseDate: "May 5, 2022",
+//     genre: ["Cartoon", "Magic", "Sci-fi"],
+//     actor: [
+//       "Alexander Cattly",
+//       "Cartin Hollia",
+//       "Greta Garbo",
+//       "Martin Brando",
+//     ],
+//     director: ["Gally Peckin", "Grace Belly"],
+//     trailerUrl: "https://www.youtube.com/watch?v=AL9zLctDJaU",
+//   },
+// ];
 
 export default function ComingSoonPage() {
   const [selectedTrailer, setSelectedTrailer] = useState<string | null>(null);

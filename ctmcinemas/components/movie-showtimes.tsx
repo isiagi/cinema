@@ -1,19 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import {
-  ChevronRight,
-  Play,
-  Calendar,
-  Clock,
-  Popcorn,
-  LogIn,
-} from "lucide-react";
-import { type MovieDetails, MovieDay } from "@/types/movie";
+import { Play, Calendar, Clock, Popcorn, LogIn } from "lucide-react";
+import { type MovieDetails } from "@/types/movie";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { useAuth, SignInButton } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
 import {
   Dialog,
   DialogContent,
@@ -31,7 +25,7 @@ interface MovieShowtimesProps {
 
 export default function MovieShowtimes({ movie }: MovieShowtimesProps) {
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
-  const [showtimes, setShowtimes] = useState<MovieDay[]>([]);
+  const [showtimes, setShowtimes] = useState<any[]>([]);
   const [showTrailer, setShowTrailer] = useState(false);
   const [showAuthDialog, setShowAuthDialog] = useState(false);
   const router = useRouter();
@@ -212,7 +206,7 @@ export default function MovieShowtimes({ movie }: MovieShowtimesProps) {
           {/* Showtimes Display */}
           {selectedDayData?.showtimes?.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {selectedDayData.showtimes.map((showtime, index) => (
+              {selectedDayData.showtimes.map((showtime: any, index: any) => (
                 <div
                   key={index}
                   className="p-4 border rounded-lg bg-white hover:shadow-md transition-shadow"

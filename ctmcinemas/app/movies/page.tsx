@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -8,10 +9,9 @@ import { Calendar, Eye } from "lucide-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 export default function MoviesPage() {
   const router = useRouter();
-  const[movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<any[]>([]);
 
   const handleViewMovie = (movieId: string) => {
     router.push(`/movies/${movieId}`);
@@ -22,17 +22,20 @@ export default function MoviesPage() {
   };
 
   const getMoviesFromAPI = async () => {
-    await axios.get('http://127.0.0.1:8000/movies/movies/').then((response) => {
-      setMovies(response.data);
-    }).catch((error) => {
-      setMovies([])
-      console.error("No movies found because of: ", error);
-    })
-  }
+    await axios
+      .get("http://127.0.0.1:8000/movies/movies/")
+      .then((response) => {
+        setMovies(response.data);
+      })
+      .catch((error) => {
+        setMovies([]);
+        console.error("No movies found because of: ", error);
+      });
+  };
 
   useEffect(() => {
-    getMoviesFromAPI()
-  }, [])
+    getMoviesFromAPI();
+  }, []);
 
   return (
     <div className="bg-black min-h-screen">
