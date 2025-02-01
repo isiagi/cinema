@@ -38,7 +38,7 @@ function Page() {
         />
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white">
-            What's On
+            What&apos;s On
           </h1>
         </div>
       </div>

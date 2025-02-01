@@ -159,7 +159,7 @@ export default function BookPage() {
 
         {/* Seating Area */}
         <div className="space-y-4 min-w-max">
-          {Object.entries(seatsByRow).map(([row, rowSeats]): any => (
+          {Object.entries(seatsByRow).map(([row, rowSeats]: any): any => (
             <div key={row} className="flex items-center">
               {/* Row Label */}
               <div className="w-8 text-center font-bold">{row}</div>
