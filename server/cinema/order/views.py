@@ -3,6 +3,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import PermissionDenied
 from .models import Order
 from .serializers import OrderSerializer
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
 
 class OrderViewSet(ModelViewSet):
     """
@@ -39,3 +42,19 @@ class OrderViewSet(ModelViewSet):
         if instance.user != self.request.user:
             raise PermissionDenied("You are not allowed to delete this order.")
         instance.delete()
+
+    @action(detail=False, methods=['get'], url_path='booked-seats/(?P<showing_id>[^/.]+)')
+    # @permission_classes([AllowAny])
+    def booked_seats(self, request, showing_id=None):
+        """
+        Get all booked seats for a specific movie showing by showing ID.
+        """
+        # Fetch orders for the given showing ID
+        movie_orders = Order.objects.filter(showing_id=showing_id)
+
+        # Extract only seat lists
+        booked_seats = []
+        for order in movie_orders:
+            booked_seats.extend(order.seats) 
+
+        return Response({"booked_seats": booked_seats}, status=status.HTTP_200_OK)
