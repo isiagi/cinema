@@ -43,7 +43,8 @@ yarn-error.log*
 next-env.d.ts
 
 /server/movies_env
-/server/cinema/db.sqlite3
+/server/movies_env
+/movies_env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
