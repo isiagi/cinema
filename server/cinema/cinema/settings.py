@@ -62,6 +62,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    'https://www.emtcinemas.com',
     "http://localhost:8000",
     "http://localhost:3000",
     "http://localhost:3001",
