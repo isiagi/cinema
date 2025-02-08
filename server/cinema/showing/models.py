@@ -17,19 +17,23 @@ class Showing(models.Model):
     def save(self, *args, **kwargs):
         # Set pricing and add-ons based on the day of the week
         if self.date.weekday() == 0:  # Monday
-            self.price = 8000
-            self.includes_3d_glasses = True
-            self.includes_popcorn = False
-        elif self.date.weekday() in [1, 2]:  # Tuesday and Wednesday
-            self.price = 12000
-            self.includes_3d_glasses = True
-            self.includes_popcorn = True
-        elif self.date.weekday() == 3:  # Thursday
             self.price = 10000
             self.includes_3d_glasses = True
             self.includes_popcorn = False
+        elif self.date.weekday() == 1:  # Tuesday and Wednesday
+            self.price = 15000
+            self.includes_3d_glasses = True
+            self.includes_popcorn = True
+        elif self.date.weekday() == 2:  # Wednesday
+            self.price = 30000
+            self.includes_3d_glasses = True
+            self.includes_popcorn = True
+        elif self.date.weekday() == 3:  # Thursday
+            self.price = 12000
+            self.includes_3d_glasses = True
+            self.includes_popcorn = False
         elif self.date.weekday() in [4, 5, 6]:  # Friday, Saturday, Sunday
-            self.price = 13000
+            self.price = 15000
             self.includes_3d_glasses = True
             self.includes_popcorn = False
         
