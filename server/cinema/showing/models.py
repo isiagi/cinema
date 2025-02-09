@@ -21,11 +21,11 @@ class Showing(models.Model):
             self.includes_3d_glasses = True
             self.includes_popcorn = False
         elif self.date.weekday() == 1:  # Tuesday and Wednesday
-            self.price = 14000
+            self.price = 15000
             self.includes_3d_glasses = True
             self.includes_popcorn = True
         elif self.date.weekday() == 2:  # Wednesday
-            self.price = 15000
+            self.price = 30000
             self.includes_3d_glasses = True
             self.includes_popcorn = False
         elif self.date.weekday() == 3:  # Thursday
