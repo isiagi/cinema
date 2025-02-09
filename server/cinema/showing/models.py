@@ -27,7 +27,7 @@ class Showing(models.Model):
         elif self.date.weekday() == 2:  # Wednesday
             self.price = 30000
             self.includes_3d_glasses = True
-            self.includes_popcorn = True
+            self.includes_popcorn = False
         elif self.date.weekday() == 3:  # Thursday
             self.price = 12000
             self.includes_3d_glasses = True
