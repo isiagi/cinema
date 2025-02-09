@@ -130,17 +130,27 @@ env = environ.Env(DEBUG=(bool, False))
 # Define a path to your project's .env file (optional)
 env_file = os.path.join(BASE_DIR, ".env")
 
+
+
 # Load environment variables from the .env file (if it exists)
 env.read_env(env_file)
+
+# import logging
+# db_logger = logging.getLogger('django.db.backends')
+# db_logger.setLevel(logging.DEBUG)
+# db_logger.addHandler(logging.StreamHandler())
+
+# print("Database URL:", env("DATABASE_URL", default="not set"))
 
 import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
         default=env("DATABASE_URL"),
-        conn_max_age=env("CONN_MAX_AGE", cast=int),
-        ssl_require=env("SSL_REQUIRE", cast=bool),
-        conn_health_checks=env("CONN_HEALTH_CHECKS", cast=bool),
+        conn_max_age=600,
+        ssl_require=True,  # Explicitly require SSL for Render.com
+        conn_health_checks=True,
+        
     )
 }
 
