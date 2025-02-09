@@ -24,10 +24,12 @@ class Command(BaseCommand):
         "status": "Now_Showing"
     },
     {
+
         "title": "Captain America: Brave New World",
         "description": "Political involvement in the Avengers' affairs causes a rift between Captain America and Iron Man",
         "longDescription": "Following the catastrophic events in Sokovia and Lagos, which resulted in massive civilian casualties despite the Avengers' intervention, the United Nations prepares to pass the Sokovia Accords – a legal framework that would establish a UN panel to oversee and control the Avengers. This controversial decision splinters the team into opposing factions, led by Steve Rogers (Captain America) and Tony Stark (Iron Man). Steve Rogers believes the Avengers should remain free to defend humanity without government interference, fearing that politics and bureaucracy could prevent them from helping when needed most. Tony Stark, haunted by his role in creating Ultron and the subsequent destruction, supports oversight, seeing it as a necessary step to ensure accountability. The situation becomes even more complex when Steve's old friend Bucky Barnes, the Winter Soldier, is framed for a terrorist bombing at the UN meeting in Vienna where the Accords are to be ratified. As Captain America fights to protect his friend from a worldwide manhunt, more heroes are drawn into the conflict. Black Panther, seeking revenge for his father's death in the bombing, joins Stark's pro-Accords faction, while Falcon, Scarlet Witch, and others align with Rogers. The conflict escalates into an all-out civil war between former allies, culminating in a devastating battle at a German airport and a more personal, brutal confrontation when a dark secret about Tony's parents is revealed. The film explores themes of friendship, loyalty, responsibility, and the price of revenge, while questioning whether freedom or security should be prioritized in an increasingly dangerous world.",
         "image": "https://res.cloudinary.com/isiagi/image/upload/v1738801024/m4st2smiuudiql3rjadq.jpg",
+
         "rating": 7.8,
         "actor": ["Chris Evans", "Robert Downey Jr."],
         "duration": "2h 27m",
@@ -37,7 +39,9 @@ class Command(BaseCommand):
         "releaseDate": "2016-05-06",
         "director": "Anthony Russo, Joe Russo",
         "trailerUrl": "https://www.youtube.com/watch?v=dKrVegVI0Us",
+
         "status": "Coming_Soon"
+
     },
     {
         "title": "Mufasa: The Lion King",
@@ -52,7 +56,9 @@ class Command(BaseCommand):
         "language": "English",
         "releaseDate": "2024-12-20",
         "director": "Barry Jenkins",
+
         "trailerUrl": "https://www.youtube.com/watch?v=oLc-slf-JWY",
+
         "status": "Coming_Soon"
     },
     {
@@ -87,6 +93,7 @@ class Command(BaseCommand):
         "trailerUrl": "https://www.youtube.com/watch?v=LKFuXETZUsI",
         "status": "Now_Showing"
     },
+
     # {
     #     "title": "Captain America: Civil War",
     #     "description": "Political involvement in the Avengers' affairs causes a rift between Captain America and Iron Man",
@@ -103,6 +110,7 @@ class Command(BaseCommand):
     #     "trailerUrl": "https://www.youtube.com/watch?v=o17MF9vnabg&t=3s",
     #     "status": "Now_Showing"
     # },
+
 ]
 
         for movie_data in movies:

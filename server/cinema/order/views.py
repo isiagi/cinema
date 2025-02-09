@@ -14,6 +14,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class OrderViewSet(ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -156,9 +157,11 @@ class OrderViewSet(ModelViewSet):
             status=status.HTTP_400_BAD_REQUEST
         )
 
+
     @action(detail=False, methods=['get'], url_path='booked-seats/(?P<showing_id>[^/.]+)')
     def booked_seats(self, request, showing_id=None):
         movie_orders = Order.objects.filter(showing_id=showing_id)
+
         booked_seats = []
         for order in movie_orders:
             booked_seats.extend(order.seats)
