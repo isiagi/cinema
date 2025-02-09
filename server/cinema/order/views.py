@@ -1,6 +1,6 @@
 # views.py
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.exceptions import PermissionDenied, ValidationError
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 class OrderViewSet(ModelViewSet):
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user).order_by('-created_at')
@@ -42,7 +42,7 @@ class OrderViewSet(ModelViewSet):
                 "https://api.flutterwave.com/v3/charges?type=mobile_money_uganda",
                 json=payload,
                 headers={
-                    "Authorization": f"Bearer FLWSECK-bdcb6f1354bae4f976fba2086b2af753-194ec5052bfvt-X",
+                    "Authorization": f"Bearer FLWSECK_TEST-0e7756b790368aec82c444801b5cdfbd-X",
                     "Content-Type": "application/json",
                 }
             )
@@ -135,6 +135,8 @@ class OrderViewSet(ModelViewSet):
         Verify payment status for an order
         """
         order = self.get_object()
+
+        print(order.payment_reference)
         
         if not order.payment_reference:
             return Response(
