@@ -10,9 +10,64 @@ from .serializers import OrderSerializer
 import requests
 from django.conf import settings
 from django.utils import timezone
+
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.conf import settings
+import json
 import logging
+from .models import Order
+from rest_framework import viewsets
 
 logger = logging.getLogger(__name__)
+
+
+@require_POST
+@csrf_exempt
+def flutterwave_webhook(request):
+    """
+    Handle Flutterwave webhook notifications for payment verification
+    """
+    secret_hash = settings.FLUTTERWAVE_SECRET_HASH
+    signature = request.headers.get("verifi-hash")
+
+    if not signature or signature != secret_hash:
+        logger.warning("Invalid webhook signature received")
+        return HttpResponse(status=401)
+
+    try:
+        payload = json.loads(request.body)
+        logger.info(f"Received Flutterwave webhook: {payload}")
+
+        # Handle the webhook event
+        event_type = payload.get('event')
+        if event_type == 'charge.completed':
+            transaction_id = payload.get('data', {}).get('id')
+            status = payload.get('data', {}).get('status')
+            tx_ref = payload.get('data', {}).get('tx_ref')
+
+            if status == 'successful':
+                # Find and update corresponding order
+                try:
+                    order = Order.objects.get(payment_reference=tx_ref)
+                    order.payment_status = 'completed'
+                    order.transaction_id = transaction_id
+                    order.save()
+                    logger.info(f"Order {order.id} payment completed successfully")
+                except Order.DoesNotExist:
+                    logger.error(f"Order not found for tx_ref: {tx_ref}")
+            else:
+                logger.warning(f"Payment not successful for tx_ref: {tx_ref}")
+
+        return HttpResponse(status=200)
+
+    except json.JSONDecodeError:
+        logger.error("Invalid JSON payload received")
+        return HttpResponse(status=400)
+    except Exception as e:
+        logger.error(f"Error processing webhook: {str(e)}")
+        return HttpResponse(status=500)
 
 
 class OrderViewSet(ModelViewSet):
@@ -27,8 +82,9 @@ class OrderViewSet(ModelViewSet):
         Initiate mobile money payment with Flutterwave
         """
         try:
+            tx_ref = f"tx-{timezone.now().timestamp()}"
             payload = {
-                "tx_ref": f"tx-{timezone.now().timestamp()}",
+                "tx_ref": tx_ref,
                 "amount": amount,
                 "currency": "UGX",
                 "country": "UG",
@@ -43,7 +99,7 @@ class OrderViewSet(ModelViewSet):
                 "https://api.flutterwave.com/v3/charges?type=mobile_money_uganda",
                 json=payload,
                 headers={
-                    "Authorization": f"Bearer FLWSECK_TEST-0e7756b790368aec82c444801b5cdfbd-X",
+                    "Authorization": f"Bearer {settings.FLUTTERWAVE_SECRET_KEY}",
                     "Content-Type": "application/json",
                 }
             )
@@ -52,37 +108,18 @@ class OrderViewSet(ModelViewSet):
                 logger.error(f"Flutterwave payment initiation failed: {response.text}")
                 raise ValidationError("Payment initiation failed")
 
-            return response.json()
+            return response.json(), tx_ref
 
         except requests.RequestException as e:
             logger.error(f"Payment request failed: {str(e)}")
             raise ValidationError("Payment service unavailable")
 
-    def verify_payment(self, transaction_id):
-        """
-        Verify payment status with Flutterwave
-        """
-        try:
-            response = requests.get(
-                f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify",
-                headers={
-                    "Authorization": f"Bearer FLWSECK-bdcb6f1354bae4f976fba2086b2af753-194ec5052bfvt-X"
-                }
-            )
-
-            if response.status_code != 200:
-                logger.error(f"Payment verification failed: {response.text}")
-                return False
-
-            data = response.json()
-            return data.get('status') == 'successful'
-
-        except requests.RequestException as e:
-            logger.error(f"Payment verification request failed: {str(e)}")
-            return False
-
     def create(self, request, *args, **kwargs):
         try:
+            # First validate the order data
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+
             payment_data = request.data.get('payment', {})
             if not all([
                 payment_data.get('phone_number'),
@@ -91,12 +128,8 @@ class OrderViewSet(ModelViewSet):
             ]):
                 raise ValidationError("Missing payment information")
 
-            # Ensure the user is assigned before creating the order
-            serializer = self.get_serializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save(user=request.user)  # Explicitly set user
-
-            payment_response = self.initiate_payment(
+            # Initiate payment
+            payment_response, tx_ref = self.initiate_payment(
                 amount=request.data.get('total_price'),
                 phone_number=payment_data.get('phone_number'),
                 provider=payment_data.get('provider')
@@ -104,21 +137,24 @@ class OrderViewSet(ModelViewSet):
 
             if payment_response.get('status') != 'success':
                 raise ValidationError("Payment initiation failed")
-            
-            print(payment_response)
 
-            request.data['payment_reference'] = payment_response['status']
+            # Create order with pending payment status
+            order = serializer.save(
+                user=request.user,
+                payment_status='pending',
+                payment_reference=tx_ref  # Store tx_ref for webhook matching
+            )
 
             response_data = {
                 'order': serializer.data,
                 'payment': {
-                    'transaction_id': payment_response['status'],
+                    'transaction_id': payment_response.get('data', {}).get('id'),
                     'status': 'pending',
                     'instructions': payment_response.get('meta', {}).get('authorization', {})
                 }
             }
 
-            return Response(response_data, status=status.HTTP_201_CREATED)
+            return Response(response_data, status=status.HTTP_202_ACCEPTED)
 
         except ValidationError as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -128,41 +164,3 @@ class OrderViewSet(ModelViewSet):
                 {'error': 'Order creation failed'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-
-    @action(detail=True, methods=['post'])
-    def verify_order_payment(self, request, pk=None):
-        """
-        Verify payment status for an order
-        """
-        order = self.get_object()
-
-        print(order.payment_reference)
-        
-        if not order.payment_reference:
-            return Response(
-                {'error': 'No payment reference found'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        payment_verified = self.verify_payment(order.payment_reference)
-        
-        if payment_verified:
-            order.payment_status = 'completed'
-            order.save()
-            return Response({'status': 'Payment verified'})
-        
-        return Response(
-            {'error': 'Payment verification failed'},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-
-
-    @action(detail=False, methods=['get'], url_path='booked-seats/(?P<showing_id>[^/.]+)')
-    def booked_seats(self, request, showing_id=None):
-        movie_orders = Order.objects.filter(showing_id=showing_id)
-
-        booked_seats = []
-        for order in movie_orders:
-            booked_seats.extend(order.seats)
-        return Response({"booked_seats": booked_seats}, status=status.HTTP_200_OK)
