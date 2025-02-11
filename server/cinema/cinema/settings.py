@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-o!0zjaxwzge&pew%1!h7)yh=n(o(kf*u4vnl_h(9$-)3!1=t9d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cinema-vmbf.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['cinema-vmbf.onrender.com', 'localhost', '127.0.0.1', 'cinema-1-f6rw.onrender.com']
 
 
 # Application definition
