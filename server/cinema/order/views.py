@@ -32,58 +32,37 @@ def flutterwave_webhook(request):
     """
     Handle Flutterwave webhook notifications for payment verification
     """
-    print("====== WEBHOOK DEBUG START ======")
-    print(f"All Headers: {dict(request.headers)}")
+    logger = logging.getLogger(__name__)
+    
+    logger.debug("**************** WEBHOOK DEBUG START ****************")
+    logger.debug(f"Request Method: {request.method}")
+    logger.debug(f"All Headers: {dict(request.headers)}")
     
     secret_hash = settings.FLUTTERWAVE_SECRET_HASH
-    print(f"Secret Hash from settings: {secret_hash}")
+    logger.debug(f"Secret Hash from settings: {secret_hash}")
     
-    # Try both header variations
+    # Check both possible header names
     signature = request.headers.get("verifi-hash")
     if not signature:
-        signature = request.headers.get("HTTP_VERIFI_HASH")  # Django might modify header name
+        signature = request.headers.get("HTTP_VERIFI_HASH")
     
-    print(f"Received signature: {signature}")
+    logger.debug(f"Received signature: {signature}")
     
     if not signature or signature != secret_hash:
-        print(f"Signature verification failed:")
-        print(f"Received: {signature}")
-        print(f"Expected: {secret_hash}")
+        logger.error(f"Signature verification failed:")
+        logger.error(f"Received signature: {signature}")
+        logger.error(f"Expected hash: {secret_hash}")
         return HttpResponse("Invalid signature", status=401)
 
-    print("====== WEBHOOK DEBUG END ======")
-    
     try:
         payload = json.loads(request.body)
-        print(f"Received payload: {payload}")
-
-        # Handle the webhook event
-        event_type = payload.get('event')
-        if event_type == 'charge.completed':
-            transaction_id = payload.get('data', {}).get('id')
-            status = payload.get('data', {}).get('status')
-            tx_ref = payload.get('data', {}).get('tx_ref')
-
-            if status == 'successful':
-                # Find and update corresponding order
-                try:
-                    order = Order.objects.get(payment_reference=tx_ref)
-                    order.payment_status = 'completed'
-                    order.transaction_id = transaction_id
-                    order.save()
-                    logger.info(f"Order {order.id} payment completed successfully")
-                except Order.DoesNotExist:
-                    logger.error(f"Order not found for tx_ref: {tx_ref}")
-            else:
-                logger.warning(f"Payment not successful for tx_ref: {tx_ref}")
-
-        return HttpResponse(status=200)
-
-    except json.JSONDecodeError:
-        logger.error("Invalid JSON payload received")
+        logger.debug(f"Received payload: {payload}")
+        # ... rest of your code ...
+    except json.JSONDecodeError as e:
+        logger.error(f"JSON Decode Error: {str(e)}")
         return HttpResponse(status=400)
     except Exception as e:
-        logger.error(f"Error processing webhook: {str(e)}")
+        logger.error(f"Webhook Processing Error: {str(e)}")
         return HttpResponse(status=500)
 
 
