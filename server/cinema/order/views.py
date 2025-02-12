@@ -173,3 +173,12 @@ class OrderViewSet(ModelViewSet):
                 {'error': 'Order creation failed'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        
+    @action(detail=False, methods=['get'], url_path='booked-seats/(?P<showing_id>[^/.]+)')
+    def booked_seats(self, request, showing_id=None):
+        movie_orders = Order.objects.filter(showing_id=showing_id)
+
+        booked_seats = []
+        for order in movie_orders:
+            booked_seats.extend(order.seats)
+        return Response({"booked_seats": booked_seats}, status=status.HTTP_200_OK)
