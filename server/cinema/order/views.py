@@ -32,22 +32,30 @@ def flutterwave_webhook(request):
     """
     Handle Flutterwave webhook notifications for payment verification
     """
+    print("====== WEBHOOK DEBUG START ======")
+    print(f"All Headers: {dict(request.headers)}")
+    
     secret_hash = settings.FLUTTERWAVE_SECRET_HASH
+    print(f"Secret Hash from settings: {secret_hash}")
+    
+    # Try both header variations
     signature = request.headers.get("verifi-hash")
-
-    logger.info(f"Received Flutterwave webhook with signature: {signature}")
-    logger.info(f"Expected signature: {secret_hash}")
-    print(f"Received Flutterwave webhook with signature: {signature}")
-    print(f"Expected signature: {secret_hash}")
-
+    if not signature:
+        signature = request.headers.get("HTTP_VERIFI_HASH")  # Django might modify header name
+    
+    print(f"Received signature: {signature}")
+    
     if not signature or signature != secret_hash:
-        logger.warning("Invalid webhook signature received")
-        print("Invalid webhook signature received")
-        return HttpResponse(status=401)
+        print(f"Signature verification failed:")
+        print(f"Received: {signature}")
+        print(f"Expected: {secret_hash}")
+        return HttpResponse("Invalid signature", status=401)
 
+    print("====== WEBHOOK DEBUG END ======")
+    
     try:
         payload = json.loads(request.body)
-        logger.info(f"Received Flutterwave webhook: {payload}")
+        print(f"Received payload: {payload}")
 
         # Handle the webhook event
         event_type = payload.get('event')
