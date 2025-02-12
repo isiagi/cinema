@@ -35,6 +35,9 @@ def flutterwave_webhook(request):
     secret_hash = settings.FLUTTERWAVE_SECRET_HASH
     signature = request.headers.get("verifi-hash")
 
+    logger.info(f"Received Flutterwave webhook with signature: {signature}")
+    logger.info(f"Expected signature: {secret_hash}")
+
     if not signature or signature != secret_hash:
         logger.warning("Invalid webhook signature received")
         return HttpResponse(status=401)
