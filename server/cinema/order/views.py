@@ -10,6 +10,8 @@ from .serializers import OrderSerializer
 import requests
 from django.conf import settings
 from django.utils import timezone
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view, permission_classes
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -23,7 +25,8 @@ from rest_framework import viewsets
 logger = logging.getLogger(__name__)
 
 
-@require_POST
+@api_view(['POST'])
+@permission_classes([AllowAny])
 @csrf_exempt
 def flutterwave_webhook(request):
     """
