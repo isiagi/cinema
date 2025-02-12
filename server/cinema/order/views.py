@@ -37,9 +37,12 @@ def flutterwave_webhook(request):
 
     logger.info(f"Received Flutterwave webhook with signature: {signature}")
     logger.info(f"Expected signature: {secret_hash}")
+    print(f"Received Flutterwave webhook with signature: {signature}")
+    print(f"Expected signature: {secret_hash}")
 
     if not signature or signature != secret_hash:
         logger.warning("Invalid webhook signature received")
+        print("Invalid webhook signature received")
         return HttpResponse(status=401)
 
     try:
