@@ -83,7 +83,7 @@ class OrderViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user).order_by('-created_at')
+        return Order.objects.filter(user=self.request.user, payment_status='completed').order_by('-created_at')
 
     def initiate_payment(self, amount, phone_number, provider):
         """
