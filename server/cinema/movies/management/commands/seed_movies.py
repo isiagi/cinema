@@ -38,7 +38,7 @@ class Command(BaseCommand):
         "language": "English",
         "releaseDate": "2016-05-06",
         "director": "Anthony Russo, Joe Russo",
-        "trailerUrl": "https://www.youtube.com/watch?v=dKrVegVI0Us",
+        "trailerUrl": "https://www.youtube.com/watch?v=1pHDWnXmK7Y",
 
         "status": "Coming_Soon"
 
@@ -57,42 +57,42 @@ class Command(BaseCommand):
         "releaseDate": "2024-12-20",
         "director": "Barry Jenkins",
 
-        "trailerUrl": "https://www.youtube.com/watch?v=oLc-slf-JWY",
+        "trailerUrl": "https://www.youtube.com/watch?v=o17MF9vnabg",
 
-        "status": "Coming_Soon"
-    },
-    {
-        "title": "Mufasa: The Lion King",
-        "description": "The origin story of Mufasa, the legendary Lion King",
-        "longDescription": "Before he became the legendary Lion King, Mufasa's story was one of struggle, brotherhood, and destiny. Born into a pride during a time of great upheaval in the African savanna, young Mufasa and his brother Taka (later known as Scar) face numerous challenges that will shape their divergent paths. The film explores their early years, revealing how Mufasa's natural leadership abilities and strong moral compass began to emerge, while his brother's resentment and ambition slowly consumed him. Through the guidance of Rafiki, a young mandrill shaman, Mufasa learns the delicate balance of ruling with both strength and compassion. The story delves deep into the complex dynamics of the pride lands, showing how Mufasa forms crucial alliances with other animals, including his first encounters with Zazu, who becomes his loyal majordomo. As drought and danger threaten the pride lands, Mufasa must step up to protect his family and territory from rival lions and hyenas, while dealing with his brother's growing jealousy and darkness. The narrative also explores Mufasa's journey to understand the concept of the Circle of Life, his first love, and the events that led to his eventual marriage to Sarabi. Through trials, victories, and heartbreaking betrayals, we witness the transformation of a young lion into the wise and powerful king who would later guide his son Simba. The film also reveals the origins of many of the pride lands' most important traditions and the deep-rooted conflicts that would eventually lead to the events of The Lion King. This epic tale combines themes of family, responsibility, betrayal, and the weight of destiny, all set against the backdrop of the majestic African wilderness.",
-        "image": "https://res.cloudinary.com/isiagi/image/upload/v1738801026/t9vztgetn74d0suovsny.jpg",
-        "rating": 8.2,
-        "actor": ["Aaron Pierre", "Kelvin Harrison Jr."],
-        "duration": "2h 10m",
-        "highlight": "Animated Drama",
-        "size": "large",
-        "language": "English",
-        "releaseDate": "2024-12-20",
-        "director": "Barry Jenkins",
-        "trailerUrl": "https://www.youtube.com/watch?v=N8UxL_YD5H8",
-        "status": "Coming_Soon"
-    },
-    {
-        "title": "Moana",
-        "description": "An adventurous teenager sails out on a daring mission to save her people",
-        "longDescription": "Three thousand years ago, the greatest sailors in the world voyaged across the vast Pacific Ocean, discovering the many islands of Oceania. But then, for a millennium, their voyages stopped – and no one knows why. Throughout the small island of Motunui, nestled in the heart of the Pacific, Moana, the strong-willed daughter of Chief Tui, has always been drawn to the ocean despite her father's explicit rules forbidding anyone from venturing beyond the reef. When her island faces a devastating ecological crisis, with coconuts rotting and fish becoming scarce, Moana learns about an ancient curse caused by the Demigod Maui stealing the heart of Te Fiti, the mother island. Against her father's wishes but with her grandmother's blessing and the ocean's guidance, Moana embarks on an epic journey across the Pacific to find Maui and restore the heart of Te Fiti. Along the way, she must navigate treacherous waters, face fearsome monsters including the giant crab Tamatoa, and discover her own identity as a wayfinder, all while racing against time to save her people and their way of life. Her journey becomes not just a mission to save her island, but a voyage of self-discovery, legacy, and the rekindling of her people's ancient traditions.",
-        "image": "https://m.media-amazon.com/images/M/MV5BMjI4MzU5NTExNF5BMl5BanBnXkFtZTgwNzY1MTEwMDI@._V1_.jpg",
-        "rating": 7.6,
-        "actor": ["Auli'i Cravalho", "Dwayne Johnson"],
-        "duration": "1h 47m",
-        "highlight": "Animated Adventure",
-        "size": "small",
-        "language": "English",
-        "releaseDate": "2016-11-23",
-        "director": "Ron Clements, John Musker",
-        "trailerUrl": "https://www.youtube.com/watch?v=LKFuXETZUsI",
         "status": "Now_Showing"
     },
+    # {
+    #     "title": "Mufasa: The Lion King",
+    #     "description": "The origin story of Mufasa, the legendary Lion King",
+    #     "longDescription": "Before he became the legendary Lion King, Mufasa's story was one of struggle, brotherhood, and destiny. Born into a pride during a time of great upheaval in the African savanna, young Mufasa and his brother Taka (later known as Scar) face numerous challenges that will shape their divergent paths. The film explores their early years, revealing how Mufasa's natural leadership abilities and strong moral compass began to emerge, while his brother's resentment and ambition slowly consumed him. Through the guidance of Rafiki, a young mandrill shaman, Mufasa learns the delicate balance of ruling with both strength and compassion. The story delves deep into the complex dynamics of the pride lands, showing how Mufasa forms crucial alliances with other animals, including his first encounters with Zazu, who becomes his loyal majordomo. As drought and danger threaten the pride lands, Mufasa must step up to protect his family and territory from rival lions and hyenas, while dealing with his brother's growing jealousy and darkness. The narrative also explores Mufasa's journey to understand the concept of the Circle of Life, his first love, and the events that led to his eventual marriage to Sarabi. Through trials, victories, and heartbreaking betrayals, we witness the transformation of a young lion into the wise and powerful king who would later guide his son Simba. The film also reveals the origins of many of the pride lands' most important traditions and the deep-rooted conflicts that would eventually lead to the events of The Lion King. This epic tale combines themes of family, responsibility, betrayal, and the weight of destiny, all set against the backdrop of the majestic African wilderness.",
+    #     "image": "https://res.cloudinary.com/isiagi/image/upload/v1738801026/t9vztgetn74d0suovsny.jpg",
+    #     "rating": 8.2,
+    #     "actor": ["Aaron Pierre", "Kelvin Harrison Jr."],
+    #     "duration": "2h 10m",
+    #     "highlight": "Animated Drama",
+    #     "size": "large",
+    #     "language": "English",
+    #     "releaseDate": "2024-12-20",
+    #     "director": "Barry Jenkins",
+    #     "trailerUrl": "https://www.youtube.com/watch?v=N8UxL_YD5H8",
+    #     "status": "Coming_Soon"
+    # },
+    # {
+    #     "title": "Moana",
+    #     "description": "An adventurous teenager sails out on a daring mission to save her people",
+    #     "longDescription": "Three thousand years ago, the greatest sailors in the world voyaged across the vast Pacific Ocean, discovering the many islands of Oceania. But then, for a millennium, their voyages stopped – and no one knows why. Throughout the small island of Motunui, nestled in the heart of the Pacific, Moana, the strong-willed daughter of Chief Tui, has always been drawn to the ocean despite her father's explicit rules forbidding anyone from venturing beyond the reef. When her island faces a devastating ecological crisis, with coconuts rotting and fish becoming scarce, Moana learns about an ancient curse caused by the Demigod Maui stealing the heart of Te Fiti, the mother island. Against her father's wishes but with her grandmother's blessing and the ocean's guidance, Moana embarks on an epic journey across the Pacific to find Maui and restore the heart of Te Fiti. Along the way, she must navigate treacherous waters, face fearsome monsters including the giant crab Tamatoa, and discover her own identity as a wayfinder, all while racing against time to save her people and their way of life. Her journey becomes not just a mission to save her island, but a voyage of self-discovery, legacy, and the rekindling of her people's ancient traditions.",
+    #     "image": "https://m.media-amazon.com/images/M/MV5BMjI4MzU5NTExNF5BMl5BanBnXkFtZTgwNzY1MTEwMDI@._V1_.jpg",
+    #     "rating": 7.6,
+    #     "actor": ["Auli'i Cravalho", "Dwayne Johnson"],
+    #     "duration": "1h 47m",
+    #     "highlight": "Animated Adventure",
+    #     "size": "small",
+    #     "language": "English",
+    #     "releaseDate": "2016-11-23",
+    #     "director": "Ron Clements, John Musker",
+    #     "trailerUrl": "https://www.youtube.com/watch?v=LKFuXETZUsI",
+    #     "status": "Now_Showing"
+    # },
 
     # {
     #     "title": "Captain America: Civil War",
