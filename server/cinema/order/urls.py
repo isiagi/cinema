@@ -3,9 +3,9 @@ from django.urls import path, include
 from .views import OrderViewSet, flutterwave_webhook
 
 router = DefaultRouter()
-router.register(r'orders', OrderViewSet, basename='order')
+router.register(r'', OrderViewSet, basename='order')  # Changed from 'orders' to ''
 
 urlpatterns = [
-    path('flutterwave-webhook/', flutterwave_webhook, name='flutterwave-webhook'),
+    path('webhook/', flutterwave_webhook, name='flutterwave-webhook'),  # Made path clearer
     path('', include(router.urls)),
 ]
