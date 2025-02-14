@@ -52,19 +52,40 @@ def flutterwave_webhook(request):
         # Process successful payment
         if payload.get('status') == 'successful':
             tx_ref = payload.get('txRef')
+            logger.error(f"Looking for order with payment_reference: {tx_ref}")
             
             try:
+                # Debug: List all orders and their payment references
+                all_orders = Order.objects.all()
+                for order in all_orders:
+                    logger.error(f"Order ID: {order.id}, Payment Reference: {order.payment_reference}")
+                
                 # Find and update the order
                 order = Order.objects.get(payment_reference=tx_ref)
+                logger.error(f"Found order: {order.id}")
+                
+                # Debug: Log order status before update
+                logger.error(f"Order status before update: {order.payment_status}")
+                
                 order.payment_status = 'completed'
                 order.save()
                 
+                # Debug: Log order status after update
+                logger.error(f"Order status after update: {order.payment_status}")
                 logger.error(f"Order {order.id} payment completed successfully")
+                
+                # Verify the update
+                refreshed_order = Order.objects.get(id=order.id)
+                logger.error(f"Verified order status after refresh: {refreshed_order.payment_status}")
+                
                 return HttpResponse("Webhook processed successfully", status=200)
                 
             except Order.DoesNotExist:
                 logger.error(f"Order not found for tx_ref: {tx_ref}")
                 return HttpResponse("Order not found", status=404)
+            except Exception as e:
+                logger.error(f"Error updating order: {str(e)}")
+                return HttpResponse("Error updating order", status=500)
         
         return HttpResponse("Webhook received", status=200)
         
