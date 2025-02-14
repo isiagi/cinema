@@ -32,38 +32,42 @@ def flutterwave_webhook(request):
     """
     Handle Flutterwave webhook notifications for payment verification
     """
-    logger = logging.getLogger(__name__)
+    print("Webhook received") # Basic print for immediate console output
     
-    logger.debug("**************** WEBHOOK DEBUG START ****************")
-    logger.debug(f"Request Method: {request.method}")
-    logger.debug(f"All Headers: {dict(request.headers)}")
+    logger.error("**************** WEBHOOK DEBUG START ****************")
+    logger.error(f"Request Method: {request.method}")
+    logger.error(f"Raw Headers: {request.META}")
     
-    secret_hash = settings.FLUTTERWAVE_SECRET_HASH
-    logger.debug(f"Secret Hash from settings: {secret_hash}")
+    # Check for the signature in multiple possible formats
+    signature = request.headers.get("verif-hash")  # Corrected header name
+    alt_signature = request.META.get("HTTP_VERIF_HASH")
     
-    # Check both possible header names
-    signature = request.headers.get("verifi-hash")
-    if not signature:
-        signature = request.headers.get("HTTP_VERIFI_HASH")
+    logger.error(f"Direct signature: {signature}")
+    logger.error(f"Alt signature: {alt_signature}")
+    logger.error(f"Secret Hash from settings: {settings.FLUTTERWAVE_SECRET_HASH}")
     
-    logger.debug(f"Received signature: {signature}")
+    if not signature and not alt_signature:
+        logger.error("No signature found in request")
+        return HttpResponse("No signature found", status=401)
+        
+    received_signature = signature or alt_signature
     
-    if not signature or signature != secret_hash:
-        logger.error(f"Signature verification failed:")
-        logger.error(f"Received signature: {signature}")
-        logger.error(f"Expected hash: {secret_hash}")
-        return HttpResponse("Invalid signature", status=403)
+    if received_signature != settings.FLUTTERWAVE_SECRET_HASH:
+        logger.error(f"Signature mismatch:")
+        logger.error(f"Received: {received_signature}")
+        logger.error(f"Expected: {settings.FLUTTERWAVE_SECRET_HASH}")
+        return HttpResponse("Invalid signature", status=401)
 
     try:
         payload = json.loads(request.body)
-        logger.debug(f"Received payload: {payload}")
-        # ... rest of your code ...
+        logger.error(f"Webhook payload: {payload}")
+        return HttpResponse("Webhook processed", status=200)
     except json.JSONDecodeError as e:
         logger.error(f"JSON Decode Error: {str(e)}")
-        return HttpResponse(status=400)
+        return HttpResponse("Invalid JSON", status=400)
     except Exception as e:
-        logger.error(f"Webhook Processing Error: {str(e)}")
-        return HttpResponse(status=500)
+        logger.error(f"Unexpected error: {str(e)}")
+        return HttpResponse("Server error", status=500)
 
 
 class OrderViewSet(ModelViewSet):
