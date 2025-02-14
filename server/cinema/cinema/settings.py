@@ -4,6 +4,7 @@ import dj_database_url
 
 import environ
 import os
+import logging.handlers
 
 # Initialize Django-environ
 env = environ.Env(DEBUG=(bool, False))
@@ -12,6 +13,40 @@ env = environ.Env(DEBUG=(bool, False))
 
 # Load environment variables from the .env file (if it exists)
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        # Add a specific logger for your app
+        'order': {  # Replace with your actual app name
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +64,7 @@ SECRET_KEY = "django-insecure-o!0zjaxwzge&pew%1!h7)yh=n(o(kf*u4vnl_h(9$-)3!1=t9d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cinema-vmbf.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['cinema-vmbf.onrender.com', 'localhost', '127.0.0.1', 'cinema-1-f6rw.onrender.com']
 
 
 # Application definition
@@ -166,6 +201,9 @@ env_file = os.path.join(BASE_DIR, ".env")
 
 # Load environment variables from the .env file (if it exists)
 env.read_env(env_file)
+
+FLUTTERWAVE_SECRET_KEY = env('FLUTTERWAVE_SECRET_KEY')
+FLUTTERWAVE_SECRET_HASH = env('FLUTTERWAVE_SECRET_HASH')
 
 # import logging
 # db_logger = logging.getLogger('django.db.backends')
