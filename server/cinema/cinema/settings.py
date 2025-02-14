@@ -197,11 +197,13 @@ env = environ.Env(DEBUG=(bool, False))
 # Define a path to your project's .env file (optional)
 env_file = os.path.join(BASE_DIR, ".env")
 
-FLUTTERWAVE_SECRET_KEY = 'FLWSECK_TEST-0e7756b790368aec82c444801b5cdfbd-X'
-FLUTTERWAVE_SECRET_HASH = 'your-webhook-secret-hash'
+
 
 # Load environment variables from the .env file (if it exists)
 env.read_env(env_file)
+
+FLUTTERWAVE_SECRET_KEY = env('FLUTTERWAVE_SECRET_KEY')
+FLUTTERWAVE_SECRET_HASH = env('FLUTTERWAVE_SECRET_HASH')
 
 # import logging
 # db_logger = logging.getLogger('django.db.backends')
