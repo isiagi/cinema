@@ -52,7 +52,7 @@ def flutterwave_webhook(request):
         logger.error(f"Signature verification failed:")
         logger.error(f"Received signature: {signature}")
         logger.error(f"Expected hash: {secret_hash}")
-        return HttpResponse("Invalid signature", status=401)
+        return HttpResponse("Invalid signature", status=403)
 
     try:
         payload = json.loads(request.body)
