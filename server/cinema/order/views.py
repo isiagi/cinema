@@ -32,42 +32,48 @@ def flutterwave_webhook(request):
     """
     Handle Flutterwave webhook notifications for payment verification
     """
-    print("Webhook received") # Basic print for immediate console output
-    
     logger.error("**************** WEBHOOK DEBUG START ****************")
     logger.error(f"Request Method: {request.method}")
-    logger.error(f"Raw Headers: {request.META}")
     
-    # Check for the signature in multiple possible formats
-    signature = request.headers.get("verif-hash")  # Corrected header name
-    alt_signature = request.META.get("HTTP_VERIF_HASH")
+    signature = request.headers.get("verif-hash")
+    if not signature:
+        signature = request.META.get("HTTP_VERIF_HASH")
     
-    logger.error(f"Direct signature: {signature}")
-    logger.error(f"Alt signature: {alt_signature}")
-    logger.error(f"Secret Hash from settings: {settings.FLUTTERWAVE_SECRET_HASH}")
-    
-    if not signature and not alt_signature:
-        logger.error("No signature found in request")
-        return HttpResponse("No signature found", status=401)
-        
-    received_signature = signature or alt_signature
-    
-    if received_signature != settings.FLUTTERWAVE_SECRET_HASH:
+    if signature != settings.FLUTTERWAVE_SECRET_HASH:
         logger.error(f"Signature mismatch:")
-        logger.error(f"Received: {received_signature}")
+        logger.error(f"Received: {signature}")
         logger.error(f"Expected: {settings.FLUTTERWAVE_SECRET_HASH}")
         return HttpResponse("Invalid signature", status=401)
 
     try:
         payload = json.loads(request.body)
         logger.error(f"Webhook payload: {payload}")
-        return HttpResponse("Webhook processed", status=200)
+        
+        # Process successful payment
+        if payload.get('status') == 'successful':
+            tx_ref = payload.get('txRef')
+            
+            try:
+                # Find and update the order
+                order = Order.objects.get(payment_reference=tx_ref)
+                order.payment_status = 'completed'
+                order.save()
+                
+                logger.error(f"Order {order.id} payment completed successfully")
+                return HttpResponse("Webhook processed successfully", status=200)
+                
+            except Order.DoesNotExist:
+                logger.error(f"Order not found for tx_ref: {tx_ref}")
+                return HttpResponse("Order not found", status=404)
+        
+        return HttpResponse("Webhook received", status=200)
+        
     except json.JSONDecodeError as e:
         logger.error(f"JSON Decode Error: {str(e)}")
         return HttpResponse("Invalid JSON", status=400)
     except Exception as e:
-        logger.error(f"Unexpected error: {str(e)}")
-        return HttpResponse("Server error", status=500)
+        logger.error(f"Webhook Processing Error: {str(e)}")
+        return HttpResponse(status=500)
 
 
 class OrderViewSet(ModelViewSet):
