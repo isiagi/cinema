@@ -19,7 +19,7 @@ class ShowingViewSet(ModelViewSet):
     serializer_class = ShowingSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
-    @action(detail=False, methods=['post'], url_path='generate-schedule', permission_classes=[AllowAny])
+    @action(detail=False, methods=['post'], url_path='generate-schedule')
     def generate_schedule(self, request):
         """
         Generate a weekly schedule for a movie.

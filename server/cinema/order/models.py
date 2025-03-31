@@ -1,6 +1,5 @@
 # models.py
 from django.db import models
-from django.contrib.auth import get_user_model
 import uuid
 
 class Order(models.Model):
@@ -11,9 +10,9 @@ class Order(models.Model):
     )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     showing = models.ForeignKey('showing.Showing', on_delete=models.CASCADE)
     seats = models.JSONField()  # Store as JSON array
+    user = models.CharField(max_length=100, null=True, blank=True)
     eats = models.JSONField(null=True, blank=True)  # Store as JSON object
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     payment_reference = models.CharField(max_length=100, null=True, blank=True)
