@@ -82,10 +82,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "corsheaders",
-     'authentication',
+    "cloudinary",
+    "authentication",
     "movies",
     "showing",
-
     "order",
    
 ]
@@ -166,9 +166,9 @@ REST_FRAMEWORK = {
         "authentication.auth.ClerkAuthentication",
         'rest_framework.authentication.SessionAuthentication',
     ],
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-    ),
+    # "DEFAULT_PERMISSION_CLASSES": (
+    #     "rest_framework.permissions.IsAuthenticated",
+    # ),
 }
 
 # SIMPLE_JWT = {
@@ -271,6 +271,24 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dj6eaoqwq',
+    'API_KEY': '468921312455241',
+    'API_SECRET': '7jqXep66-KNEou3PudZ7pMtde9o'
+}
+
+# Initialize cloudinary
+cloudinary.config(
+    cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
+    api_key=CLOUDINARY_STORAGE['API_KEY'],
+    api_secret=CLOUDINARY_STORAGE['API_SECRET']
+)
 
 # AUTH0
 AUTH0_DOMAIN = 'dev-f8y06j0gk5hfjnvf.us.auth0.com'

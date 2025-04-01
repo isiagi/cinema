@@ -17,7 +17,7 @@ class ShowingViewSet(ModelViewSet):
     """
     queryset = Showing.objects.all().order_by('date', 'time')
     serializer_class = ShowingSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
     @action(detail=False, methods=['post'], url_path='generate-schedule')
     def generate_schedule(self, request):

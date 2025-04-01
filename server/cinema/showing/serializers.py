@@ -3,7 +3,7 @@ from .models import Showing
 
 class ShowingSerializer(serializers.ModelSerializer):
     movie_title = serializers.ReadOnlyField(source='movie.title')  # Include the movie title in the response
-    movie_img = serializers.ReadOnlyField(source='movie.image')
+    movie_img = serializers.ReadOnlyField(source='movie.image_url') 
 
     class Meta:
         model = Showing

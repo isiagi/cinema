@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Movie(models.Model):
@@ -15,7 +16,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=500)
     longDescription = models.TextField()
-    image = models.CharField(max_length=500)
+    image = CloudinaryField('image', blank=True, null=True, resource_type='image')
     rating = models.DecimalField(max_digits=3, decimal_places=1)
     actor = models.JSONField()
     duration = models.CharField(max_length=500)
@@ -26,6 +27,13 @@ class Movie(models.Model):
     director = models.CharField(max_length=1000)
     trailerUrl = models.CharField(max_length=1000)
     status = models.CharField(max_length=15, choices=Status.choices, default=Status.PENDING)
+
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return None
 
     def save(self, *args, **kwargs):
         if not self.id:

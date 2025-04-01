@@ -5,6 +5,10 @@ from .models import Movie
 from .serializers import MovieSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
+import cloudinary
+import cloudinary.uploader
+from rest_framework.exceptions import ValidationError
 
 
 class MovieViewSet(ModelViewSet):
@@ -13,7 +17,8 @@ class MovieViewSet(ModelViewSet):
     """
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    parser_classes = [MultiPartParser, FormParser]
 
     @action(detail=True, methods=["get"], permission_classes=[IsAuthenticatedOrReadOnly])
     def get_movie(self, request, pk=None):
@@ -38,27 +43,33 @@ class MovieViewSet(ModelViewSet):
         serializer = self.get_serializer(movies, many=True)
         return Response(serializer.data)
 
-    def perform_create(self, serializer):
-        """
-        Restrict movie creation to authenticated users.
-        """
-        serializer.save(created_by=self.request.user)
+     # Remove the created_by parameter if not in model
+    def create(self, request, *args, **kwargs):
+        movie_data = request.data
+
+        # Ensure image is provided in request.FILES
+        image_file = request.FILES.get('image')
+        if not image_file:
+            raise ValidationError({"image": "Image file is required."})
+
+        # Try uploading the image to Cloudinary
+        try:
+            upload_result = cloudinary.uploader.upload(image_file)
+            movie_data['image'] = upload_result['url']
+        except Exception as e:
+            raise ValidationError({"image": f"Image upload failed: {str(e)}"})
+
+        # Validate and save the movie data
+        serializer = self.get_serializer(data=movie_data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        
+        return Response(serializer.data, status=201)
+    
+        
 
     def perform_update(self, serializer):
-        """
-        Restrict movie updates to the user who created the movie.
-        """
-        movie = self.get_object()
-        if movie.created_by != self.request.user:
-            raise PermissionDenied("You are not allowed to update this movie.")
-        serializer.save(updated_by=self.request.user)
+        serializer.save()  # Remove the updated_by parameter if not in model
 
     def perform_destroy(self, instance):
-        """
-        Restrict movie deletion to the user who created the movie.
-        """
-        if instance.created_by != self.request.user:
-            raise PermissionDenied("You are not allowed to delete this movie.")
-        instance.deleted_by = self.request.user
-        instance.save()
-        instance.delete()
+        instance.delete()  # Simplify if fields don't exist
