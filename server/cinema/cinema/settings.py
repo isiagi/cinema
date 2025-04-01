@@ -66,6 +66,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['cinema-vmbf.onrender.com', 'localhost', '127.0.0.1', 'cinema-1-f6rw.onrender.com']
 
+CLERK_ISSUER_URL = "https://capital-halibut-20.clerk.accounts.dev"
+CLERK_JWKS_URL = f"{CLERK_ISSUER_URL}/.well-known/jwks.json"
+CLERK_AUDIENCE = "http://localhost:3000"
+
 
 # Application definition
 
@@ -77,13 +81,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "rest_framework_simplejwt",
-    "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "cloudinary",
+    "authentication",
     "movies",
     "showing",
-    "user",
     "order",
+   
 ]
 
 MIDDLEWARE = [
@@ -135,7 +139,7 @@ CORS_ALLOW_HEADERS = [
 
 ]
 
-MIDDLEWARE.insert(3, "cinema.middlewares.Auth0Middleware")
+# MIDDLEWARE.insert(3, "cinema.middlewares.Auth0Middleware")
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -158,21 +162,20 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-        'rest_framework.authentication.TokenAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "authentication.auth.ClerkAuthentication",
         'rest_framework.authentication.SessionAuthentication',
-    ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.AllowAny",
-    ),
+    ],
+    # "DEFAULT_PERMISSION_CLASSES": (
+    #     "rest_framework.permissions.IsAuthenticated",
+    # ),
 }
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "AUTH_HEADER_TYPES": ("Bearer",),
-}
+# SIMPLE_JWT = {
+#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+#     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+#     "AUTH_HEADER_TYPES": ("Bearer",),
+# }
 
 WSGI_APPLICATION = "cinema.wsgi.application"
 
@@ -226,7 +229,7 @@ DATABASES = {
 
 
 
-AUTH_USER_MODEL = "user.User"
+# AUTH_USER_MODEL = "user.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -268,6 +271,24 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dj6eaoqwq',
+    'API_KEY': '468921312455241',
+    'API_SECRET': '7jqXep66-KNEou3PudZ7pMtde9o'
+}
+
+# Initialize cloudinary
+cloudinary.config(
+    cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
+    api_key=CLOUDINARY_STORAGE['API_KEY'],
+    api_secret=CLOUDINARY_STORAGE['API_SECRET']
+)
 
 # AUTH0
 AUTH0_DOMAIN = 'dev-f8y06j0gk5hfjnvf.us.auth0.com'

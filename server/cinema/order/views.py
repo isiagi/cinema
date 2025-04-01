@@ -1,7 +1,7 @@
 # views.py
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.exceptions import PermissionDenied, ValidationError
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
@@ -80,10 +80,10 @@ def flutterwave_webhook(request):
 
 class OrderViewSet(ModelViewSet):
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user, payment_status='completed').order_by('-created_at')
+        return Order.objects.filter(user=self.request.user).order_by('-created_at')
 
     def initiate_payment(self, amount, phone_number, provider):
         """
@@ -98,7 +98,7 @@ class OrderViewSet(ModelViewSet):
                 "country": "UG",
                 "phone_number": phone_number,
                 "network": provider,
-                "email": self.request.user.email,
+                "email": "tB0m1@example.com",
                 "fullname": f"isiagi",
                 "redirect_url": f"http://localhost:3000/payment-callback"
             }
@@ -110,6 +110,7 @@ class OrderViewSet(ModelViewSet):
                     "Authorization": f"Bearer {settings.FLUTTERWAVE_SECRET_KEY}",
                     "Content-Type": "application/json",
                 }
+              
             )
 
             if response.status_code != 200:
@@ -149,7 +150,7 @@ class OrderViewSet(ModelViewSet):
             # Create order with pending payment status
             order = serializer.save(
                 user=request.user,
-                payment_status='pending',
+                payment_status= payment_response.get('status'),
                 payment_reference=tx_ref  # Store tx_ref for webhook matching
             )
 
